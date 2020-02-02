@@ -13,6 +13,10 @@ WORKDIR /code
 ADD requirements.txt /code/
 RUN apk --update-cache add python3-dev postgresql-client \
     gcc g++ libc-dev linux-headers postgresql-dev
+
+RUN apk --update add libxml2-dev libxslt-dev libffi-dev gcc musl-dev libgcc openssl-dev curl
+RUN apk add jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev
+
 RUN apk add sqlite
 RUN pip install -r requirements.txt
 

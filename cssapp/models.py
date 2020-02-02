@@ -5,7 +5,7 @@ from django.db import models
 class BoardModel(models.Model):
     titile = models.CharField(max_length=100)
     content = models.TextField()
-    author = models.CharField()
+    author = models.CharField(max_length=100)
     images  = models.ImageField(upload_to='')
     good = models.IntegerField()
     read = models.IntegerField()
