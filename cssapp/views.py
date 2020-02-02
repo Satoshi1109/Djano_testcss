@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http.response import HttpResponse
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 
 def index(request):
@@ -22,3 +23,20 @@ def signupfunc(request):
     else :
         print('NOT POST')
     return render(request, 'signup.html')
+
+def loginfunc(request):
+    if request.method == 'POST':
+        login_username = request.POST['username']
+        login_password = request.POST['password']
+        user = authenticate(request, username=login_username, password=login_password)
+        if user is not None:
+            login(request, user)
+            return redirect('signup')
+        else:
+            return redirect('login')
+    else :
+        print('NOT POST')
+    return render(request, 'login.html')
+
+def listfunc(request):
+    return render(request, 'list.html')
